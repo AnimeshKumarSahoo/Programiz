@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class tower_of_hanoi {
 	
 	static void toh(int n, char src, char inter, char dest) {

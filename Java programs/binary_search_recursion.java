@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class binary_search_recursion {
 
 	static int binary(int arr[], int key, int lb, int ub, int mid) {

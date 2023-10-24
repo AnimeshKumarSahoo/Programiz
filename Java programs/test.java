@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class test {
     public static void main(String[] args) {
         int n = 5, m = 4;

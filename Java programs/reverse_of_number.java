@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class reverse_of_number {
 
     static int reverse(int n){

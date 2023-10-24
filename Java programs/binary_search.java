@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class binary_search {
 
     static int bin_sea(int arr[], int lb, int ub, int key) {
