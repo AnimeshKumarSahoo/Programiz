@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class binary_equivalent {
 
     static int binary(int n) {

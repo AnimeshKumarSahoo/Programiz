@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class max_path_sum {
 
 	static void max_path(int arr1[], int arr2[]) {

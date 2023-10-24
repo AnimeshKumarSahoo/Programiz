@@ -11,7 +11,7 @@ public class Nonrepeating {
         System.out.println ("Non repeating characters are: ");
         for (int i = 0; i < 256; i++){
             if (freq[i] == 1)
-            {\
+            {
             System.out.print ((char) i + " ");
             }
     }

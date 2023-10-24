@@ -1,4 +1,3 @@
-package CSW.CSW2;
 import java.util.*;
 
 public class sum_double_arraylist {

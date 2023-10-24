@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 class fibonacci {
     static int num_1 = 0, num_2 = 1, num_3 =0;
     
