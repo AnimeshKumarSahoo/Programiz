@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class prime_or_not {
 
     static boolean prime(int n){

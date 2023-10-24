@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class reverse_array {
 	static void reverse(int arr[]) {
 		int i = 0, j = arr.length - 1;

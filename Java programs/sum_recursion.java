@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class sum_recursion {
 
 	static int sum(int n) {

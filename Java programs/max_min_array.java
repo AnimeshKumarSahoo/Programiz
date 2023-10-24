@@ -1,4 +1,3 @@
-package CSW.CSW2;
 //import java.util.*;
 
 public class max_min_array {

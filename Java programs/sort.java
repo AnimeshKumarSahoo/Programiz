@@ -1,5 +1,3 @@
-package CSW.CSW2;
-
 public class sort {
 
 	static void selsort(int arr[]) {
