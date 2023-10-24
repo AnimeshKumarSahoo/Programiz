@@ -1,61 +1,86 @@
+// Java program for implementation of Ford Fulkerson
+// algorithm
+import java.lang.*;
+import java.io.*;
+import java.util.*;
 import java.util.LinkedList;
-
+ 
 class FordFulkerson {
-    static final int V = 6; // Using BFS as a searching algorithm
-
-    boolean bfs(int Graph[][], int s, int t, int p[]) {
+    static final int V = 6; // Number of vertices in graph
+ 
+    boolean bfs(int rGraph[][], int s, int t, int parent[]) {
         boolean visited[] = new boolean[V];
         for (int i = 0; i < V; ++i)
             visited[i] = false;
+ 
         LinkedList<Integer> queue = new LinkedList<Integer>();
         queue.add(s);
         visited[s] = true;
-        p[s] = -1;
+        parent[s] = -1;
+ 
         while (queue.size() != 0) {
             int u = queue.poll();
+ 
             for (int v = 0; v < V; v++) {
-                if (visited[v] == false && Graph[u][v] > 0) {
+                if (visited[v] == false && rGraph[u][v] > 0) {
+                    if (v == t) {
+                        parent[v] = u;
+                        return true;
+                    }
                     queue.add(v);
-                    p[v] = u;
+                    parent[v] = u;
                     visited[v] = true;
                 }
             }
         }
-        return (visited[t] == true);
-    } // Applying fordfulkerson algorithm
-
-    int fordFulkerson(int graph[][], int s, int t) {
+ 
+        return false;
+    }
+ 
+    int fordFulkerson(int graph[][], int s, int t)
+    {
         int u, v;
-        int Graph[][] = new int[V][V];
-        for (u = 0; u < V; u++) {
-            for (v = 0; v < V; v++) {
-                Graph[u][v] = graph[u][v];
-                int p[] = new int[V];
-                int max_flow = 0;
-                // Updating the residual values of edges
-                while (bfs(Graph, s, t, p)) {
-                    int path_flow = Integer.MAX_VALUE;
-                    for (v = t; v != s; v = p[v]) {
-                        u = p[v];
-                        path_flow = Math.min(path_flow, Graph[u][v]);
-                    }
-                    for (v = t; v != s; v = p[v]) {
-                        u = p[v];
-                        Graph[u][v] -= path_flow;
-                        Graph[v][u] += path_flow;
-                    }
-                    // Adding the path flows
-                    max_flow += path_flow;
-                }
+ 
+        int rGraph[][] = new int[V][V];
+ 
+        for (u = 0; u < V; u++)
+            for (v = 0; v < V; v++)
+                rGraph[u][v] = graph[u][v];
+ 
+        int parent[] = new int[V];
+ 
+        int max_flow = 0;
+
+        while (bfs(rGraph, s, t, parent)) {
+            int path_flow = Integer.MAX_VALUE;
+            for (v = t; v != s; v = parent[v]) {
+                u = parent[v];
+                path_flow
+                    = Math.min(path_flow, rGraph[u][v]);
             }
+ 
+            for (v = t; v != s; v = parent[v]) {
+                u = parent[v];
+                rGraph[u][v] -= path_flow;
+                rGraph[v][u] += path_flow;
+            }
+ 
+            max_flow += path_flow;
         }
+ 
         return max_flow;
     }
+ 
+    public static void main(String[] args) throws java.lang.Exception
+    {
+        int graph[][] = new int[][] {
+            { 0, 16, 13, 0, 0, 0 }, { 0, 0, 10, 12, 0, 0 },
+            { 0, 4, 0, 0, 14, 0 },  { 0, 0, 9, 0, 0, 20 },
+            { 0, 0, 0, 7, 0, 4 },   { 0, 0, 0, 0, 0, 0 }
+        };
 
-    public static void main(String[] args) throws java.lang.Exception {
-        int graph[][] = new int[][] { { 0, 8, 0, 0, 3, 0 }, { 0, 0, 9, 0, 0, 0 }, { 0, 0, 0, 0, 7, 2 },
-                { 0, 0, 0, 0, 0, 5 }, { 0, 0, 7, 4, 0, 0 }, { 0, 0, 0, 0, 0, 0 } };
         FordFulkerson m = new FordFulkerson();
-        System.out.println("Max Flow: " + m.fordFulkerson(graph, 0, 5));
+ 
+        System.out.println("The maximum possible flow is " + m.fordFulkerson(graph, 0, 5));
     }
 }
